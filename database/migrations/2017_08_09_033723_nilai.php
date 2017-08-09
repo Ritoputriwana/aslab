@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CalonPraktikum extends Migration
+class Nilai extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CalonPraktikum extends Migration
      */
     public function up()
     {
-        Schema::create('calon_praktikum', function (Blueprint $table) {
-            $table->increments('id_calprak');
-            $table->string('nama_calprak');
-            $table->string('id_reg');
-            $table->string('id_prak');
+        Schema::create('Nilai', function (Blueprint $table) {
+            $table->increments('id_nilai');
+            $table->integer('id_matkul');
+            $table->integer('nim');
+            $table->integer('Nilai');
         });
     }
 
@@ -28,6 +28,6 @@ class CalonPraktikum extends Migration
      */
     public function down()
     {
-        Schema::drop('calon_praktikum');
+        Schema::drop('Nilai');
     }
 }

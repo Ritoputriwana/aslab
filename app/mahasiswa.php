@@ -9,8 +9,8 @@ class mahasiswa extends Model
     protected $table = 'mahasiswa';
     protected $fillable = ['nim', 'nama', 'alamat', 'no_hp', 'email'];
 
-    public function calon_praktikum()
+    public function nilai()
     {
-    	return $this->belongsTo('App\calon_praktikum', 'id_calprak');
+    	return $this->hasMany('App\nilai', 'nim');
     }
 }

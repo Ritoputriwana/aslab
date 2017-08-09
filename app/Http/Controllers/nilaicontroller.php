@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Blog;
+use App\nilai;
 use App\mahasiswa;
+use App\matakuliah;
 use Validator;
 
-class mahasiswacontroller extends Controller
+class nilaicontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,8 @@ class mahasiswacontroller extends Controller
      */
     public function index()
     {
-        $articles = mahasiswa::paginate(6);
-        return view("mahasiswa.index", compact('articles'));
+        $nilais = nilai::paginate(6);
+        return view("nilai.nilai", compact('nilais'));
     }
 
     /**
@@ -27,8 +28,8 @@ class mahasiswacontroller extends Controller
      */
     public function create()
     {
-        $mahasiswa = mahasiswa::get();
-        return view("mahasiswa.create", compact('mahasiswa'));
+        $matakuliah = matakuliah::get();
+        return view("nilai.nilai", compact('matakuliah'));
     }
 
     /**
@@ -40,15 +41,13 @@ class mahasiswacontroller extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'nim' => 'required|integer',
-            'nama' => 'required|string',
-            'email' => 'required|string',
-            'semester' => 'required|string',
-            'alamat' => 'required|string',
-            'no_hp' => 'required|string'
+            'id_nilai' => 'required|integer',
+            'id_matkul' => 'required|integer',
+            'nim' => 'required|string',
+            'Nilai' => 'required|string',
             ])->validate();
-        mahasiswa::create($request->all());
-        return redirect()->route('mahasiswa.index');
+        nilai::create($request->all());
+        return redirect()->route('nilai.nilai');
     }
 
     /**
@@ -59,8 +58,8 @@ class mahasiswacontroller extends Controller
      */
     public function show($id)
     {
-        $article = mahasiswa::findOrfail($id);
-        return view("mahasiswa.show", compact('article'));
+        $nilai = nilai::findOrfail($id);
+        return view("nilai.nilai", compact('nilai'));
     }
 
     /**
@@ -71,9 +70,9 @@ class mahasiswacontroller extends Controller
      */
     public function edit($id)
     {
-        $articles = mahasiswa::findOrfail($id);
-        $categories = calonpraktikum::get();
-        return view('mahasiswa.edit', compact('article', 'categories'));
+        $nilai = nilai::findOrfail($id);
+        $nilais = nilais::get();
+        return view("nilai.nilai", compact('nilai', 'nilais'));
     }
 
     /**
@@ -85,15 +84,14 @@ class mahasiswacontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        Validator::make($request->all(),[
-            'nim' => 'required|integer',
-            'nama' => 'required|string',
-            'alamat' => 'required|string',
-            'no_hp' => 'required|string',
-            'email' => 'required|string',
+        Validator::make($request->all(), [
+            'id_nilai' => 'required|integer',
+            'id_matkul' => 'required|integer',
+            'nim' => 'required|string',
+            'Nilai' => 'required|string',
             ])->validate();
-        mahasiswa::findOrfail($id)->update($request->all());
-        return redirect()->route('mahasiswa.index');
+        nilai::findOrfail($id)->update($request->all());
+        return redirect()->route('nilai.nilai');
     }
 
     /**
@@ -104,7 +102,7 @@ class mahasiswacontroller extends Controller
      */
     public function destroy($id)
     {
-        mahasiswa:findOrfail($id)->delete();
-        return redirect()->route('mahasiswa.index');
+        nilai::findOrfail($id)->delete();
+        return redirect()->route('nilai.nilai');
     }
 }

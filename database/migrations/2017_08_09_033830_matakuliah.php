@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Reguler extends Migration
+class Matakuliah extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class Reguler extends Migration
      */
     public function up()
     {
-        Schema::create('reguler', function (Blueprint $table) {
-            $table->increments('id_reg');
-            $table->string('nama_reg');
+        Schema::create('Matakuliah', function (Blueprint $table) {
+            $table->increments('id_matkul');
+            $table->string('nama_matkul');
         });
     }
 
@@ -26,6 +26,6 @@ class Reguler extends Migration
      */
     public function down()
     {
-        Schema::drop('calon_praktikum');
+        Schema::drop('Matakuliah');
     }
 }
