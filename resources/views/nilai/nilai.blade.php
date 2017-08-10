@@ -12,23 +12,19 @@
 			<form class="form" method="get" action=""> 
 				{{ csrf_field() }}
 				<div class="form-group">
-					<input type="text" name="title" class="form-control" placeholder="Title">
+					<input type="text" name="NIM" class="form-control" placeholder="NIM">
 				</div>
-				
-				<div class="form-group">
-					<textarea class="form-control" placeholder="Content" name="content"></textarea>
-				</div>
-				
+
 				<!-- <div class="form-control"> -->
 					<select class = "form-control" name="id_matkul">
 						@foreach($matakuliah as $key => $matakuliah_)
 							<option value="{{ $matakuliah_->id_matkul }}">{{ $matakuliah_->nama_matkul }}</option>
 						@endforeach
 					</select>
-				<!-- </div> -->
-				<br>
-				<div class="form-group">
-					<textarea class="form-control" placeholder="nim" name="content"></textarea>
+
+					<br>
+					<div class="form-group">
+					<input type="text" name="nilai" class="form-control" placeholder="Nilai">
 				</div>
 
 				<input type="hidden" name="user_id" value=""{{ auth() ->user()->id }}>

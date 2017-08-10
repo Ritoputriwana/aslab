@@ -9,23 +9,23 @@
 		</div>
 		
 		<div class="panel-body">
-			<form class="form" method="get" action="{{route('mahasiswa.store')}}"> 
+			<form class="form" method="get" action="{{ route('mahasiswa.store') }}"> 
 				{{ csrf_field() }}
 
 				<div class="form-group">
-					<input type="text" name="NIM" class="form-control" placeholder="nim">
+					<input type="text" name="nim" class="form-control" placeholder="nim">
 				</div>
 				
 				<div class="form-group">
-					<input type="text" name="Nama" class="form-control" placeholder="nama">
+					<input type="text" name="nama" class="form-control" placeholder="nama">
 				</div>
 				
 				<div class="form-group">
-					<input type="text" name="Email" class="form-control" placeholder="email">
+					<input type="text" name="email" class="form-control" placeholder="email">
 				</div>
 
 				<div class="form-group">
-					<input type="text" name="Semester" class="form-control" placeholder="semester">
+					<input type="text" name="semester" class="form-control" placeholder="Semester">
 				</div>
 
 				<div class="form-group">
@@ -33,7 +33,7 @@
 				</div>
 				
 				<div class="form-group">
-					<input type="text" name="NoHP" class="form-control" placeholder="noHP">
+					<input type="text" name="no_hp" class="form-control" placeholder="noHP">
 				</div>
 
 				<input type="hidden" name="user_id" value=""{{ auth() ->user()->id }}>

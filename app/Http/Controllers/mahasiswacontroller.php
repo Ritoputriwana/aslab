@@ -16,8 +16,8 @@ class mahasiswacontroller extends Controller
      */
     public function index()
     {
-        $articles = mahasiswa::paginate(6);
-        return view("mahasiswa.index", compact('articles'));
+        $mahasiswa = mahasiswa::paginate(6);
+        return view("mahasiswa.index", compact('mahasiswa'));
     }
 
     /**
@@ -40,15 +40,15 @@ class mahasiswacontroller extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'nim' => 'required|integer',
-            'nama' => 'required|string',
-            'email' => 'required|string',
-            'semester' => 'required|string',
-            'alamat' => 'required|string',
-            'no_hp' => 'required|string'
+            'nim'       => 'required|integer|min:1',
+            'nama'      => 'required|string|min:1',
+            'email'     => 'required|string|min:1',
+            'semester'  => 'required|string|min:1',
+            'alamat'    => 'required|string|min:1',
+            'no_hp'     => 'required|string|min:1'
             ])->validate();
         mahasiswa::create($request->all());
-        return redirect()->route('mahasiswa.index');
+        return redirect()->route('mahasiswa.create');
     }
 
     /**
@@ -57,10 +57,10 @@ class mahasiswacontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nim)
     {
-        $article = mahasiswa::findOrfail($id);
-        return view("mahasiswa.show", compact('article'));
+        $mahasiswa = mahasiswa::where('nim', $nim)->firstOrFail();
+        return view("mahasiswa.show", compact('mahasiswa'));
     }
 
     /**
@@ -69,11 +69,11 @@ class mahasiswacontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nim)
     {
-        $articles = mahasiswa::findOrfail($id);
-        $categories = calonpraktikum::get();
-        return view('mahasiswa.edit', compact('article', 'categories'));
+        $mahasiswa = mahasiswa::where('nim', $nim)->firstOrFail();
+        $mahasiswas = mahasiswa::get();
+        return view('mahasiswa.edit', compact('mahasiswa', 'mahasiswas'));
     }
 
     /**
@@ -83,7 +83,7 @@ class mahasiswacontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim)
     {
         Validator::make($request->all(),[
             'nim' => 'required|integer',
@@ -92,7 +92,7 @@ class mahasiswacontroller extends Controller
             'no_hp' => 'required|string',
             'email' => 'required|string',
             ])->validate();
-        mahasiswa::findOrfail($id)->update($request->all());
+        mahasiswa::findOrfail($nim)->update($request->all());
         return redirect()->route('mahasiswa.index');
     }
 
@@ -102,9 +102,10 @@ class mahasiswacontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nim)
     {
-        mahasiswa:findOrfail($id)->delete();
+        // mahasiswa::findOrfail($nim)->delete();
+        mahasiswa::where('nim',"=", $nim)->delete();
         return redirect()->route('mahasiswa.index');
     }
 }
