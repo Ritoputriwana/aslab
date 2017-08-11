@@ -18,7 +18,8 @@ class nilaicontroller extends Controller
     public function index()
     {
         $nilais = nilai::paginate(6);
-        return view("nilai.nilai", compact('nilais'));
+        // return $nilais;
+        return view("nilai.index", compact('nilais'));
     }
 
     /**
@@ -28,8 +29,8 @@ class nilaicontroller extends Controller
      */
     public function create()
     {
-        $matakuliah = matakuliah::get();
-        return view("nilai.nilai", compact('matakuliah'));
+        $mahasiswa = nilai::get();
+        return view("nilai.index", compact('mahasiswa'));
     }
 
     /**
@@ -47,7 +48,7 @@ class nilaicontroller extends Controller
             'Nilai' => 'required|string',
             ])->validate();
         nilai::create($request->all());
-        return redirect()->route('nilai.nilai');
+        return redirect()->route('nilai.index');
     }
 
     /**
@@ -56,10 +57,10 @@ class nilaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_nilai)
     {
-        $nilai = nilai::findOrfail($id);
-        return view("nilai.nilai", compact('nilai'));
+        $nilai = nilai::where('id_nilai', $id_nilai)->firstOrFail();
+        return view("nilai.index", compact('nilai'));
     }
 
     /**
@@ -68,11 +69,11 @@ class nilaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_nilai)
     {
-        $nilai = nilai::findOrfail($id);
+        $nilai = nilai::where('id_nilai', $id_nilai)->firstOrFail();
         $nilais = nilais::get();
-        return view("nilai.nilai", compact('nilai', 'nilais'));
+        return view("nilai.index", compact('nilai', 'nilais'));
     }
 
     /**
@@ -82,7 +83,7 @@ class nilaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_nilai)
     {
         Validator::make($request->all(), [
             'id_nilai' => 'required|integer',
@@ -90,8 +91,8 @@ class nilaicontroller extends Controller
             'nim' => 'required|string',
             'Nilai' => 'required|string',
             ])->validate();
-        nilai::findOrfail($id)->update($request->all());
-        return redirect()->route('nilai.nilai');
+        nilai::findOrfail($id_nilai)->update($request->all());
+        return redirect()->route('nilai.index');
     }
 
     /**
@@ -100,9 +101,9 @@ class nilaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_nilai)
     {
-        nilai::findOrfail($id)->delete();
-        return redirect()->route('nilai.nilai');
+        nilai::findOrfail($id_nilai)->delete();
+        return redirect()->route('nilai.index');
     }
 }
