@@ -93,6 +93,8 @@ class nilaicontroller extends Controller
             ])->validate();
         nilai::findOrfail($id_nilai)->update($request->all());
         return redirect()->route('nilai.index');
+
+    
     }
 
     /**
