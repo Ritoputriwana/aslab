@@ -21,6 +21,7 @@ Route::get('/nilai', function () {
 
 Route::group(['prefix'=>'home/mahasiswa', 'middleware'=>'auth', 'as'=>'mahasiswa.', 'name'=>'mahasiswa'], function() {
 	Route::get('/', 'mahasiswacontroller@index')->name('index');
+	Route::post('create', 'mahasiswacontroller@create')->name('create');
 	Route::get('create', 'mahasiswacontroller@create')->name('create');
 	Route::post('store', 'mahasiswacontroller@store')->name('store');
 	Route::get('show/{nim}', 'mahasiswacontroller@show')->name('show');
@@ -28,6 +29,7 @@ Route::group(['prefix'=>'home/mahasiswa', 'middleware'=>'auth', 'as'=>'mahasiswa
 	Route::put('update/{nim}', 'mahasiswacontroller@update')->name('update');
 	Route::delete('delete(/{nim}', 'mahasiswacontroller@destroy')->name('delete');
 });
+
 Auth::routes();
 
 

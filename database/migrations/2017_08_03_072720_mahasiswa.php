@@ -16,10 +16,10 @@ class Mahasiswa extends Migration
         Schema::create('mahasiswa', function(Blueprint $table) {
             $table->integer('nim');
             $table->string('nama');
+            $table->string('email');
+            $table->string('semester');
             $table->string('alamat');
             $table->string('no_hp');
-            $table->string('email');
-            $table->string('id_calprak');
         });
     }
 

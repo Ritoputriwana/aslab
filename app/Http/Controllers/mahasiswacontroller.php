@@ -43,12 +43,12 @@ class mahasiswacontroller extends Controller
             'nim'       => 'required|integer|min:1',
             'nama'      => 'required|string|min:1',
             'email'     => 'required|string|min:1',
-            'semester'  => 'required|string|min:1',
+            'semester'  => 'required|integer|min:1',
             'alamat'    => 'required|string|min:1',
-            'no_hp'     => 'required|string|min:1'
+            'no_hp'     => 'required|string|min:1',
             ])->validate();
         mahasiswa::create($request->all());
-        return redirect()->route('mahasiswa.create');
+        return redirect()->route('mahasiswa.index');
     }
 
     /**

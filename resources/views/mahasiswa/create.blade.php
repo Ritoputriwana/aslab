@@ -9,7 +9,7 @@
 		</div>
 		
 		<div class="panel-body">
-			<form class="form" method="get" action="{{ route('mahasiswa.store') }}"> 
+			<form class="form" method="post" action="{{ route('mahasiswa.store') }}"> 
 				{{ csrf_field() }}
 
 				<div class="form-group">
@@ -36,7 +36,7 @@
 					<input type="text" name="no_hp" class="form-control" placeholder="noHP">
 				</div>
 
-				<input type="hidden" name="user_id" value=""{{ auth() ->user()->id }}>
+				<input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 				
 				<br>
 				<div class="form-group">
