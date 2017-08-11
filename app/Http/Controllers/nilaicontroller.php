@@ -29,7 +29,7 @@ class nilaicontroller extends Controller
      */
     public function create()
     {
-        $matakuliah = nilai::get();
+        $matakuliah = matakuliah::get();
         return view("nilai.nilai", compact('matakuliah'));
     }
 
@@ -103,7 +103,7 @@ class nilaicontroller extends Controller
      */
     public function destroy($id_nilai)
     {
-        nilai::findOrfail($id_nilai)->delete();
+         nilai::where('id_nilai',"=", $id_nilai)->delete();
         return redirect()->route('nilai.index');
     }
 }

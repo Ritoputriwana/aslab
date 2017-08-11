@@ -43,3 +43,8 @@ Route::group(['prefix'=>'home/nilai', 'middleware'=>'auth', 'as'=>'nilai.', 'nam
 	Route::delete('delete(/{nim}', 'nilaicontroller@destroy')->name('delete');
 	// Route::get('nilai', 'mahasiswacontroller@nilai')->name('nilai');
 });
+
+
+
+
+

@@ -53,6 +53,16 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('nilai.create') }}">
+                                            Create Nilai
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('mahasiswa.create') }}">
+                                            Create Mahasiswa
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
