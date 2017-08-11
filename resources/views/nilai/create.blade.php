@@ -8,7 +8,7 @@
 			<div class="panel-title">Create Blog</div>
 		</div>
 		<div class="panel-body">
-			<form class="form" method="get" action="{{ route('nilais.store') }}">
+			<form class="form" method="get" action="{{ route('nilai.store') }}">
 				{{ csrf_field() }}
 
 				<div class="form-group">
@@ -20,6 +20,11 @@
 				<div class="form-group">
 					<input type="text" name="nim" class="form-control" placeholder="nim">
 				</div>
+				<select class="form-control" name="category_id">
+						@foreach($matakuliah as $key => $category)
+						<option value="{{ $category->id_matkul }}">{{ $category->nama_matkul }}</option>
+						@endforeach
+					</select>
 				<div class="form-group">
 					<input type="text" name="nilai" class="form-control" placeholder="nilai">
 				</div>

@@ -31,13 +31,13 @@ Route::group(['prefix'=>'home/mahasiswa', 'middleware'=>'auth', 'as'=>'mahasiswa
 Auth::routes();
 
 
-Route::group(['prefix'=>'home/nilai', 'middleware'=>'auth', 'as'=>'aslab.', 'name'=>'aslab'], function() {
+Route::group(['prefix'=>'home/nilai', 'middleware'=>'auth', 'as'=>'nilai.', 'name'=>'nilai'], function() {
 	Route::get('/', 'nilaicontroller@index')->name('index');
 	Route::get('create', 'nilaicontroller@create')->name('create');
 	Route::post('store', 'nilaicontroller@store')->name('store');
-	Route::get('show/{nim}', 'nilaicontroller@show')->name('show');
+	Route::get('show/{id_nilai}', 'nilaicontroller@show')->name('show');
 	Route::get('edit/{nim}', 'nilaicontroller@edit')->name('edit');
 	Route::put('update/{nim}', 'nilaicontroller@update')->name('update');
-	Route::get('delete(/{nim}', 'nilaicontroller@destroy')->name('delete');
+	Route::delete('delete(/{nim}', 'nilaicontroller@destroy')->name('delete');
 	// Route::get('nilai', 'mahasiswacontroller@nilai')->name('nilai');
 });

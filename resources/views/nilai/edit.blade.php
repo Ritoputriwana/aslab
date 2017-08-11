@@ -8,21 +8,24 @@
 			<div class="panel-title">Edit Blog</div>
 		</div>
 		<div class="panel-body">
-			<form class="form" method="POST" action="{{ route('blog.update', $article->id) }}">
+			<form class="form" method="POST" action="{{ route('nilai.update', $nilai->id_nilai) }}">
 				{{ csrf_field() }}
 				{{ method_field('PUT') }}
+				
+				<input type="hidden" name="id_nilai" class="form-control" placeholder="Nim" value="{{ $nilai->id_nilai }}">
+
 				<div class="form-group">
-					<input type="text" name="title" class="form-control" placeholder="Title" value="{{ $article->title }}">
-				</div>
-				<div class="form-group">
-					<textarea class="form-control" placeholder="Content" name="content">{{ $article->content }}</textarea>
+					<input type="text" name="nim" class="form-control" placeholder="Nim" value="{{ $nilai->nim }}">
 				</div>
 				<div class="form-group">
 					<select class="form-control" name="category_id">
-						@foreach($categories as $key => $category)
-						<option value="{{ $category->id }}">{{ $category->name }}</option>
+						@foreach($matakuliah as $key => $category)
+						<option value="{{ $category->id_matkul }}">{{ $category->nama_matkul }}</option>
 						@endforeach
 					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" name="nilai" class="form-control" placeholder="Nilai" value="{{ $nilai->Nilai }}">
 				</div>
 				<input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 				<div class="form-group">

@@ -29,8 +29,8 @@ class nilaicontroller extends Controller
      */
     public function create()
     {
-        $mahasiswa = nilai::get();
-        return view("nilai.index", compact('mahasiswa'));
+        $matakuliah = nilai::get();
+        return view("nilai.nilai", compact('matakuliah'));
     }
 
     /**
@@ -60,7 +60,7 @@ class nilaicontroller extends Controller
     public function show($id_nilai)
     {
         $nilai = nilai::where('id_nilai', $id_nilai)->firstOrFail();
-        return view("nilai.index", compact('nilai'));
+        return view("nilai.show", compact('nilai'));
     }
 
     /**
@@ -72,8 +72,8 @@ class nilaicontroller extends Controller
     public function edit($id_nilai)
     {
         $nilai = nilai::where('id_nilai', $id_nilai)->firstOrFail();
-        $nilais = nilais::get();
-        return view("nilai.index", compact('nilai', 'nilais'));
+        $matakuliah = matakuliah::get();
+        return view("nilai.edit", compact('nilai', 'matakuliah'));
     }
 
     /**
@@ -86,10 +86,10 @@ class nilaicontroller extends Controller
     public function update(Request $request, $id_nilai)
     {
         Validator::make($request->all(), [
-            'id_nilai' => 'required|integer',
+            'id_nilai'  => 'required|integer',
             'id_matkul' => 'required|integer',
-            'nim' => 'required|string',
-            'Nilai' => 'required|string',
+            'nim'       => 'required|integer',
+            'Nilai'     => 'required|integer',
             ])->validate();
         nilai::findOrfail($id_nilai)->update($request->all());
         return redirect()->route('nilai.index');

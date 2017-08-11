@@ -17,8 +17,8 @@
 
 				<!-- <div class="form-control"> -->
 					<select class = "form-control" name="id_matkul">
-						@foreach($matakuliah as $key => $matakuliah_)
-							<option value="{{ $matakuliah_->id_matkul }}">{{ $matakuliah_->nama_matkul }}</option>
+						@foreach($matakuliah as $key => $matkul)
+							<option value="{{ $matkul->nama_matkul }}">{{ $matkul->nama_matkul }}</option>
 						@endforeach
 					</select>
 
